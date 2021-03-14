@@ -17,6 +17,24 @@ let mapleader = ","
 set encoding=utf-8
 set number relativenumber
 
+set textwidth=140
+set showmatch
+set visualbell
+
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+
+set smartindent
+set smarttab
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+
+set ruler
+set cursorline
+
 " Configuração do tema
 syntax on
 set background=dark
