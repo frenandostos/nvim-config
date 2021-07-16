@@ -209,3 +209,238 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-angular', 'coc-browser', 'coc-clangd', 'coc-css', 'coc-cssmodules', 'coc-eslint', 'coc-explorer', 'coc-flutter', 'coc-fzf-preview', 'coc-gist', 'coc-graphql', 'coc-html', 'coc-htmlhint', 'coc-html-css-support', 'coc-stylelint', 'coc-sql', 'coc-svg', 'coc-tailwindcss', 'coc-tsserver', 'coc-vetur', 'coc-xml', 'coc-yaml']
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define QTDMAXPROJETOS 5
+
+struct tp_projetos {
+  int codigo;
+  char titulo[70];
+  char descricao[140];
+  int ano;
+  int status;
+  char repsonsavel[50];
+  char dataInicio[10];
+  char dataFim[10];
+  int tpEmpreendimento;
+} tpprojetos;
+
+// Declaração de funções
+cadastrarProjeto(int codigo);
+mostrarTipoImpressao();
+mostrarStatus();
+statusProjeto(int opcaoStatus);
+tipoEmpreendimento(int tipoEmpreendimento);
+menuPrincipal(int opcaoMenu);
+menuImpressao(int opcaoImpressao)
+
+
+int main() {
+
+  int opcaoMenu;
+  int executarAcao = 0;
+  
+  printf("============================================\n");
+  printf("\n\tGerenciador de Projetos de Edificações\n");
+  printf("============================================\n");
+
+  printf("\nEscolha uma opção\n");
+  printf("\n1 - Cadastrar Projeto\n");
+  printf("\n2 - Ver Status de Projetos\n");
+
+  scanf("%d", &opcaoMenu);
+
+  menuPrincipal(executarAcao);
+
+
+  
+  return 0;
+}
+
+void statusProjeto(int opcaoStatus) {
+  switch(opcaoStatus) {
+
+    case 1:
+      printf("A Fazer");
+      break;
+
+    case 2:
+      printf("Fazendo\n");
+      break;
+
+    case 3:
+      printf("Concluído");
+      break;
+    
+  }
+}
+
+void tipoEmpreendimento(int tipoEmpreendimento) {
+  switch(tipoEmpreendimento) {
+
+    case 1:
+      printf("\nComercial");
+      break;
+
+    case 2:
+      printf("\nResidencial");
+      break;
+
+    default:
+      printf("Opção inválida");
+
+  }
+}
+
+void mostrarTipoImpressao() {
+  printf("1 - A fazer\n");
+  printf("2 - Fazendo\n");
+  printf("3 - Concluído\n");
+  printf("4 - Tipo de Empreendimento\n");
+}
+
+void mostrarStatus() {
+  printf("1 - A fazer\n");
+  printf("2 - Fazendo\n");
+  printf("3 - Concluído\n");
+}
+
+int menuPrincipal(int opcaoMenu) {
+
+  int executarAcao = 0;
+
+  while(executarAcao == 0) {
+    
+    switch(opcaoMenu) {
+      case 1: 
+        printf("\nCadastrar Projeto\n");
+        ++executarAcao;
+      break;
+
+      case 2:
+        printf("Imprimir projetos\n");
+        ++executarAcao;
+      break;
+
+      case 3:
+        printf("Encerrar");
+      break;
+
+      default:
+        printf("Escolha uma opcao válida\n");
+        printf("\n1 - Cadastrar Projeto\n");
+        printf("2 - Ver Status de Projetos\n");
+        printf("3 - Encerrar");
+        
+        scanf("%d", &opcaoMenu);
+    }
+
+  }
+
+  return opcaoMenu;
+}
+
+int menuImpressao(int opcaoImpressao) {
+  int menuImpressao = 0;
+
+  while(menuImpressao == 0) {
+    
+    switch(opcaoImpressao) {
+      case 1: 
+        printf("\nCadastrar Projeto\n");
+        ++menuImpressao;
+      break;
+
+      case 2:
+        printf("Imprimir projetos\n");
+        ++menuImpressao;
+      break;
+
+      case 3:
+        printf("Voltar ao menu principal");
+      break;
+
+      default:
+        printf("Escolha uma opcao válida\n");
+        printf("\n1 - Cadastrar Projeto\n");
+        printf("2 - Ver Status de Projetos\n");
+        printf("3 - Voltar ao menu principal");
+        
+        scanf("%d", &opcaoImpressao);
+    }
+
+  }
+
+  return opcaoImpressao;
+}
+
+void imprimirProjetos(int opcaoMostrar, tpprojetos projetos[QTDMAXPROJETOS], int contador){
+  for(int i=0; i < contador; i++) {
+    if(projetos[i].statusProjeto == opcaoMostrar) {
+      printf("======================================================================\n\n");
+
+      printf("Código do projeto: %c \n", projetos[i].codigo);
+      printf("Título do projeto: %c \n", projetos[i].titulo);
+      printf("Descrição do projeto: %c \n", projetos[i].descricao);
+      printf("Tipo de empreendimento: %c \n", tipoEmpreendimento(int projetos[i].tipoEmpreendimento));
+      printf("Status do projeto: %c \n", statusProjeto(projetos[i].statusProjeto));
+      printf("Responsável: %c \n", projetos[i].responsavel);
+      printf("Data Inicial: %c \n", projetos[i].dataInicio);
+      printf("Data Final: %c \n", projetos[i].dataFim);
+
+      printf("\n======================================================================\n\n");
+    }
+  }
+}
+
+tpprojetos cadastrarProjeto(int codigo) {
+
+  tpprojetos projeto;
+
+  projeto.codigo = ++codigo;
+
+  printf("\nInsira o título:\n");
+  scanf("%c", titulo);
+  projeto.titulo = titulo;
+
+  printf("\nInsira a descrição do projeto:\n");
+  scanf("%c", descricao);
+  projeto.descricao = descricao;
+
+  printf("\nInsira o tipo de empreendimento:\n")
+  printf("\n1 - Comercial");
+  printf("\n2 - Residencial");
+  scanf("%d", tipoEmpreendimento);
+  projeto.tpEmpreendimento = tipoEmpreendimento
+
+  printf("\nInsira o ano do projeto:\n");
+  scanf("%d", &ano);
+  projeto.ano = ano;
+
+  printf("\nInforme o status do projeto:\n");
+  printf("\n1 - A Fazer");
+  printf("\n2 - Fazendo");
+  printf("\n3 - Concluído");
+  scanf("%d", &statusProjeto);
+  projeto.statusProjeto = statusProjeto;
+
+  printf("\nInsira o responsável pelo projeto:\n");
+  scanf("%c", repsonsavel);
+  projeto.responsavel = responsavel;
+
+  printf("\nInsira a data de início:\n");
+  scanf("%c", dataInicio);
+  projeto.dataInicio = dataInicio;
+
+  printf("\nInsira a data final:\n");
+  scanf("%c", dataFim);
+  projeto.dataFim = dataFim;
+
+  return projeto;
+}
